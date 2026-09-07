@@ -1,6 +1,6 @@
 <?php
 $emails="zihan@gmail.com";
-function isvalid(string $email):string{
+function isvalid(string $email):bool{
   if(str_contains($email,"@")){
     return true;
   }else{
@@ -8,5 +8,5 @@ function isvalid(string $email):string{
   }
 }
 $result=isvalid($emails);
-echo $result
+echo $result;
 ?>
