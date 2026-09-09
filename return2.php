@@ -1,11 +1,9 @@
 <?php
-function findbig($a,$b){
-  if($a>$b){
-    return $a;
-  }else{
-    return $b;
+function checkAge($age){
+  if($age<18){
+    return "Not Eligible";
   }
+  return "Eligible";
 }
-  $result=findbig(5,10);
-    echo $result;
+echo checkAge(15);
 ?>
