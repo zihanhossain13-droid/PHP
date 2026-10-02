@@ -1,18 +1,19 @@
 <?php
-interface NotifierInterface{
-  public function send(string $msg);
+interface ShapeInterface{
+  public function getArea();
 }
-trait EmailHelper{
-  public function formatEmail(string $msg){
-    return "Email Body:{$msg}";
+class Square implements ShapeInterface{
+  public function __construct(public float $length){}
+  public function getArea(){
+    return $this->length*$this->length;
   }
 }
-class EmailNotifier implements NotifierInterface{
-  use EmailHelper;
-  public function send(string $msg){
-    return $this->formatEmail($msg);
+class AreaCalculator{
+  public function calculate(ShapeInterface $shape){
+    return $shape->getArea();
   }
 }
-$email=new EmailNotifier();
-echo $email->send("Welcome User");
+$square=new Square(4);
+$area=new AreaCalculator();
+echo $area->calculate($square);
 ?>
