@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
-class DiscountCalculator{
-  public function applyDiscount(int|float $price,float $discountPercentage){
-    $calculateFinalPrice=fn()=>$price-($price*($discountPercentage/100));
-    return $calculateFinalPrice();
+class OrderCalculator{
+  public function calculateTotal(int|float $subtotal,int|float $shippingFee,float $taxRate){
+    $calculate=fn()=>$subtotal+$shippingFee+($subtotal*($taxRate/100));
+    return $calculate();
   }
 }
 try{
-  $calculator=new DiscountCalculator();
-  echo "Final Price:".$calculator->applyDiscount(1000,10.0). "BDT<br>";
-  echo "Final Price:".$calculator->applyDiscount(1500.50,15.0) . "BDT<br>";
+  $calculator=new OrderCalculator();
+  $total=$calculator->calculateTotal(2000,120.50,5.0);
+  echo "Total Amount:" . $total ."BDT";
 }catch(TypeError $e){
-  echo "Type Error:". $e->getMessage();
+  echo "Type Error:" . $e->getMessage();
 }
+?>
